@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo 2 - Exercicios</title>
+</head>
+
+<body>
+    <h1>Módulo 2 - Exercicios</h1>
+    <h3>1º exercício</h3>
+    <blockquote>Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado
+        vermelho com 100px de altura e largura. Sempre que o botão for clicado um novo quadrado deve
+        aparecer na tela</blockquote>
+    <h4>Resposta</h4>
+    <div id="resposta1">
+        <button>Criar elemento</button>
+        <div class="boxes"></div>
+    </div>
+    <h3>2º exercício</h3>
+    <blockquote>Utilizando o resultado do primeiro desafio, toda vez que o usuário passar o mouse por cima de
+        algum quadrado troque sua cor para uma cor aleatória gerada pela função abaixo:
+    </blockquote>
+    <h4>Resposta</h4>
+    <div id="resposta2">
+        <p>Visualizar na questão anterior</p>
+    </div>
+    <h3>3º exercício</h3>
+    <blockquote>
+        A partir do seguinte vetor:
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+        Preencha uma lista ul no HTML com os itens da seguinte forma:
+            ● Diego
+            ● Gabriel
+            ● Lucas
+    </blockquote>
+    <h4>Resposta</h4>
+    <div id="resposta3">
+        
+    </div>
+    <h3>4º exercício</h3>
+    <blockquote>
+        Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:<br>
+<input type="text" name="nome">
+<button onClick="adicionar()">Adicionar</button><Br>
+Ao clicar no botão, a função adicionar() deve ser disparada adicionando um novo item a lista de
+nomes baseado no nome preenchido no input e renderizando o novo item em tela juntos aos
+demais itens anteriores. Além disso, o conteúdo do input deve ser apagado após o clique
+    </blockquote>
+    <h4>Resposta</h4>
+    <div id="resposta4">
+        Usar o input acima
+    </div>
+    <script>
+        var createBox = function () {
+            console.log('criado')
+            var boxElement = document.createElement('div')
+            boxElement.style.display = 'inline-block'
+            boxElement.style.margin = '5px'
+            boxElement.style.width = '100px'
+            boxElement.style.height = '100px'
+            boxElement.style.backgroundColor = 'red'
+
+            boxElement.onmouseover = changeBackgroundColor
+
+            var answerElement = document.querySelector('#resposta1 .boxes')
+            answerElement.appendChild(boxElement)
+        }
+        var buttonElement = document.querySelector('#resposta1 button')
+        buttonElement.addEventListener('click', createBox)
+
+        function changeBackgroundColor(event) {
+            var element = event.target
+            element.style.backgroundColor = getRandomColor()
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        
+        var nomes = ["Diego", "Lucas", "Gabriel"]
+        var listElement = document.createElement('ul')
+        for (nome of nomes){
+            var listItemElement = createListItem(nome)
+            listElement.appendChild(listItemElement)
+        }
+        document.querySelector('#resposta3').appendChild(listElement)
+        function createListItem(content){
+            var listItemElement = document.createElement('li')
+            var textElement = document.createTextNode(content)
+            listItemElement.appendChild(textElement)
+            return listItemElement
+        }
+
+        function adicionar(){
+            var inputElement = document.querySelector('input[name=nome]')
+            var inputText = inputElement.value
+            if(inputText && inputText != ''){
+                var listItemElement = createListItem(inputText)
+                listElement.appendChild(listItemElement)
+                inputElement.value = ''    
+            }
+        }
+    </script>
+
+    <div class="profile">
+        <img src="" alt="">
+        <span>@rychellms</span>
+        <a href="">Editar perfil</a>
+    </div>
+</body>
+
+</html>
